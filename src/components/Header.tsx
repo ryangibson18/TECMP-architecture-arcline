@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Building2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -49,7 +49,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
             onClick={() => handleNavClick('home')}
             className="flex items-center space-x-2 group"
           >
-            <Building2 className="w-8 h-8 text-gold-600 group-hover:text-gold-700 transition-colors" />
+            <img src="/logo.svg" alt="Arcline" className="w-9 h-9 group-hover:scale-105 transition-transform" />
             <div className="text-left">
               <div className="font-playfair text-2xl font-bold text-primary-900">
                 Arcline

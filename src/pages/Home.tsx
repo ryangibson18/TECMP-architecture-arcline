@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react';
 import {
-  Building2,
-  Home as HomeIcon,
-  Palette,
-  MapPin,
-  TreePine,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
   Star,
@@ -28,34 +22,40 @@ export default function Home({ onNavigate }: HomeProps) {
 
   const services = [
     {
-      icon: Building2,
       title: 'Architectural Design',
       description: 'Creating stunning residential, commercial, and institutional spaces that blend form and function.',
+      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800',
+      tag: 'Design',
     },
     {
-      icon: Palette,
       title: 'Interior Design',
       description: 'Transforming interiors into beautiful, functional spaces for homes, offices, and hospitality.',
+      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+      tag: 'Interiors',
     },
     {
-      icon: MapPin,
       title: 'Urban Planning',
       description: 'Comprehensive planning for townships, smart cities, and industrial developments.',
+      image: 'https://images.pexels.com/photos/378570/pexels-photo-378570.jpeg?auto=compress&cs=tinysrgb&w=800',
+      tag: 'Planning',
     },
     {
-      icon: TreePine,
       title: 'Landscape Design',
       description: 'Designing serene gardens, courtyards, and rooftop spaces that connect with nature.',
+      image: 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=800',
+      tag: 'Landscape',
     },
     {
-      icon: Sparkles,
       title: '3D Visualization',
       description: 'Photorealistic renders and immersive walkthroughs to bring your vision to life.',
+      image: '/3d vis.jpg',
+      tag: 'Visualization',
     },
     {
-      icon: HomeIcon,
       title: 'Project Management',
       description: 'End-to-end project consultancy ensuring timely delivery and quality execution.',
+      image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
+      tag: 'Management',
     },
   ];
 
@@ -230,23 +230,34 @@ export default function Home({ onNavigate }: HomeProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-primary-50 p-8 rounded-lg shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group"
+                className="group cursor-pointer"
+                onClick={() => onNavigate('services')}
               >
-                <service.icon className="w-12 h-12 text-gold-600 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="font-playfair text-2xl font-semibold text-primary-900 mb-3">
+                <div className="relative rounded-xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-shadow duration-300">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 backdrop-blur-sm text-primary-800 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase">
+                      {service.tag}
+                    </span>
+                  </div>
+                </div>
+                <h3 className="font-playfair text-xl font-semibold text-primary-900 mb-2 group-hover:text-gold-700 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-primary-600 leading-relaxed mb-4">{service.description}</p>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="text-gold-600 font-medium hover:text-gold-700 inline-flex items-center group-hover:translate-x-1 transition-transform"
-                >
-                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                </button>
+                <p className="text-primary-600 leading-relaxed text-sm mb-3">{service.description}</p>
+                <span className="text-gold-600 font-medium text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
+                  Learn More <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </span>
               </div>
             ))}
           </div>
